@@ -32,8 +32,7 @@
   },
   "pi": {
     "extensions": [
-      "./extensions/vision.ts",
-      "./extensions/paste.ts"
+      "./index.ts"
     ]
   },
   "files": [

@@ -794,10 +794,7 @@ export default function visionExtension(pi: ExtensionAPI): void {
   });
 
   // ── /vision slash command ──────────────────────────────────────────────
-  pi.registerCommand("vision", {
-    description:
-      "Open the vision settings panel (like /settings). Subcommands: show, on, off, provider <p>, model [<id>], max-dim <px>, quality <1-100>, reasoning-effort <level>, system-prompt [<text>|clear], cache <clear|show>, fallback [<provider/model>|clear>, clear.",
-    handler: async (args, ctx) => {
+  const handleVisionCommand = async (args: string, ctx: ExtensionCommandContext) => {
       const parts = args.trim().split(/\s+/).filter(Boolean);
       const sub = parts[0] ?? ""; // empty → open the settings panel
       const agentDir = getAgentDir();
@@ -1158,7 +1155,24 @@ export default function visionExtension(pi: ExtensionAPI): void {
           );
         }
       }
-    },
+    };
+
+  pi.registerCommand("vision", {
+    description:
+      "Open the vision settings panel (like /settings). Subcommands: show, on, off, provider <p>, model [<id>], max-dim <px>, quality <1-100>, reasoning-effort <level>, system-prompt [<text>|clear], cache <clear|show>, fallback [<provider/model>|clear>, clear.",
+    handler: handleVisionCommand,
+  });
+
+  pi.registerCommand("gambar", {
+    description:
+      "Pengaturan modul vision / gambar (alias /vision). Subcommands: show, on, off, model, preview <path>, audit.",
+    handler: handleVisionCommand,
+  });
+
+  pi.registerCommand("visual", {
+    description:
+      "Pengaturan modul vision / gambar (alias /vision). Subcommands: show, on, off, model, preview <path>, audit.",
+    handler: handleVisionCommand,
   });
 
   // ── /vision-use command + ctrl+shift+i hotkey (SPEC-2 gap #5: inline switch) ─
