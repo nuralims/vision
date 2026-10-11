@@ -104,6 +104,7 @@ export async function callVisionModel(
     messages,
     max_tokens: 4096,
     temperature: 0,
+    stream: false,
   };
   const reasoningParams = buildReasoningParams(visionModel, reasoning);
   if (reasoningParams) Object.assign(body, reasoningParams);
