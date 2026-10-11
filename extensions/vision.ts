@@ -31,7 +31,7 @@ import {
   Key,
   SettingsList,
   type SettingItem,
-  SelectItem,
+  type SelectItem,
   SelectList,
   Spacer,
   Text,
@@ -1173,6 +1173,19 @@ export default function visionExtension(pi: ExtensionAPI): void {
     description:
       "Pengaturan modul vision / gambar (alias /vision). Subcommands: show, on, off, model, preview <path>, audit.",
     handler: handleVisionCommand,
+  });
+
+  pi.registerCommand("lihat-gambar", {
+    description:
+      "Tampilkan preview gambar langsung di terminal (alias /vision preview <path>).",
+    handler: async (args, ctx) => {
+      const path = args.trim();
+      if (!path) {
+        ctx.ui.notify("Gunakan: /lihat-gambar <path-gambar>", "warning");
+        return;
+      }
+      await handleVisionCommand(`preview ${path}`, ctx);
+    },
   });
 
   // ── /vision-use command + ctrl+shift+i hotkey (SPEC-2 gap #5: inline switch) ─

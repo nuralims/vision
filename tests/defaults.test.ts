@@ -29,8 +29,8 @@ function makeModel(provider: string, id: string, input: ("text" | "image")[] = [
 const vision = (p: string, id: string) => makeModel(p, id, ["text", "image"]);
 const text = (p: string, id: string) => makeModel(p, id, ["text"]);
 
-test("PREFERRED_PRIMARY_PROVIDER is \"Ollama\"", () => {
-  assert.equal(PREFERRED_PRIMARY_PROVIDER, "Ollama");
+test("PREFERRED_PRIMARY_PROVIDER is \"9router\"", () => {
+  assert.equal(PREFERRED_PRIMARY_PROVIDER, "9router");
 });
 
 test("no vision models → all undefined (no-op)", () => {
